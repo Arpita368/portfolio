@@ -4,21 +4,835 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arpita Sonparote | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay-blue: #4f8ef7;
+      --clay-purple: #a78bfa;
+      --clay-teal: #2dd4bf;
+      --clay-pink: #f472b6;
+      --clay-green: #34d399;
+      --clay-amber: #fbbf24;
+      --bg: #eef2ff;
+      --surface: #ffffff;
+      --text-dark: #0f172a;
+      --text-mid: #334155;
+      --text-soft: #64748b;
+      --radius-clay: 28px;
+      --radius-pill: 50px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 10% 0%, rgba(79,142,247,0.13) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(167,139,250,0.12) 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 90%, rgba(45,212,191,0.09) 0%, transparent 40%);
+      color: var(--text-dark);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── GLASSMORPHISM HERO ─── */
+    .hero {
+      position: relative;
+      padding: 80px 24px 90px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #0d1b4b 0%, #0f172a 50%, #1a0533 100%);
+      z-index: 0;
+    }
+
+    /* floating orbs behind glass */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(55px);
+      z-index: 0;
+      pointer-events: none;
+      animation: float 7s ease-in-out infinite;
+    }
+    .orb1 { width: 320px; height: 320px; background: rgba(79,142,247,0.35); top: -80px; left: -60px; }
+    .orb2 { width: 260px; height: 260px; background: rgba(167,139,250,0.30); top: 40px; right: -40px; animation-delay: -3s; }
+    .orb3 { width: 180px; height: 180px; background: rgba(45,212,191,0.25); bottom: -30px; left: 40%; animation-delay: -5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-20px) scale(1.04); }
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 960px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    /* glassmorphism card wrapping hero text */
+    .hero-glass {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border-radius: 30px;
+      padding: 40px 44px;
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+
+    /* profile photo with claymorphism ring */
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-photo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clay-blue), var(--clay-purple), var(--clay-teal));
+      z-index: 0;
+      animation: spin 8s linear infinite;
+    }
+
+    .hero-photo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clay-purple), var(--clay-pink), var(--clay-blue));
+      opacity: 0.4;
+      z-index: -1;
+      filter: blur(10px);
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .hero-photo-wrap img {
+      position: relative; z-index: 1;
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #0f172a;
+      display: block;
+    }
+
+    .hero-name {
+      font-size: 42px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .hero-role {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-role::before {
+      content: "";
+      display: inline-block;
+      width: 28px; height: 2px;
+      background: linear-gradient(to right, var(--clay-blue), var(--clay-purple));
+      border-radius: 2px;
+    }
+
+    .hero-intro {
+      font-size: 14px;
+      color: rgba(255,255,255,0.62);
+      margin-bottom: 28px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* contact pills — glassmorphism */
+    .contact-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .c-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(8px);
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .c-pill:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.30);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .c-pill .icon { font-size: 15px; }
+
+    /* ─── SECTION LAYOUT ─── */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--clay-blue);
+      margin-bottom: 10px;
+    }
+
+    .section-label::before {
+      content: "";
+      display: inline-block;
+      width: 18px; height: 2px;
+      background: var(--clay-blue);
+      border-radius: 2px;
+    }
+
+    h2.section-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.8px;
+      margin-bottom: 36px;
+    }
+
+    /* ─── CLAYMORPHISM CARDS ─── */
+    .clay-card {
+      background: var(--surface);
+      border-radius: var(--radius-clay);
+      padding: 28px 30px;
+      border: 1.5px solid rgba(255,255,255,0.9);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .clay-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--radius-clay) var(--radius-clay) 0 0;
+      background: linear-gradient(to right, var(--card-accent-a, var(--clay-blue)), var(--card-accent-b, var(--clay-purple)));
+    }
+
+    .clay-card:hover {
+      transform: translateY(-8px) scale(1.01);
+    }
+
+    /* Blue clay */
+    .clay-blue {
+      box-shadow:
+        0 8px 0 #3b7de9,
+        0 12px 28px rgba(79,142,247,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      --card-accent-a: #4f8ef7;
+      --card-accent-b: #a78bfa;
+    }
+    .clay-blue:hover { box-shadow: 0 4px 0 #3b7de9, 0 16px 36px rgba(79,142,247,0.28), inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    /* Purple clay */
+    .clay-purple {
+      box-shadow:
+        0 8px 0 #7c5fd4,
+        0 12px 28px rgba(167,139,250,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      --card-accent-a: #a78bfa;
+      --card-accent-b: #f472b6;
+    }
+    .clay-purple:hover { box-shadow: 0 4px 0 #7c5fd4, 0 16px 36px rgba(167,139,250,0.28), inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    /* Teal clay */
+    .clay-teal {
+      box-shadow:
+        0 8px 0 #15a88f,
+        0 12px 28px rgba(45,212,191,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      --card-accent-a: #2dd4bf;
+      --card-accent-b: #34d399;
+    }
+    .clay-teal:hover { box-shadow: 0 4px 0 #15a88f, 0 16px 36px rgba(45,212,191,0.28), inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    /* Pink clay */
+    .clay-pink {
+      box-shadow:
+        0 8px 0 #db2777,
+        0 12px 28px rgba(244,114,182,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      --card-accent-a: #f472b6;
+      --card-accent-b: #a78bfa;
+    }
+    .clay-pink:hover { box-shadow: 0 4px 0 #db2777, 0 16px 36px rgba(244,114,182,0.28), inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    /* Amber clay */
+    .clay-amber {
+      box-shadow:
+        0 8px 0 #d89e0b,
+        0 12px 28px rgba(251,191,36,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      --card-accent-a: #fbbf24;
+      --card-accent-b: #34d399;
+    }
+    .clay-amber:hover { box-shadow: 0 4px 0 #d89e0b, 0 16px 36px rgba(251,191,36,0.28), inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    /* ─── WHAT I WORK ON GRID ─── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .work-card .icon-wrap {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .work-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .work-card p {
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* icon bg tints */
+    .icon-blue  { background: rgba(79,142,247,0.12); }
+    .icon-purple{ background: rgba(167,139,250,0.12); }
+    .icon-teal  { background: rgba(45,212,191,0.12); }
+
+    /* ─── EDUCATION ─── */
+    .edu-grid { display: grid; gap: 20px; }
+
+    .edu-card { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .edu-card h3 { font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+    .edu-card .school { font-size: 13px; color: var(--text-soft); }
+    .edu-right { text-align: right; flex-shrink: 0; }
+    .edu-year { font-size: 13px; color: var(--text-soft); margin-bottom: 8px; }
+
+    /* Neuomorphism badge */
+    .neuo-badge {
+      display: inline-block;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 700;
+      background: #eef2ff;
+      color: #4338ca;
+      box-shadow:
+        4px 4px 8px rgba(99,102,241,0.18),
+        -3px -3px 7px rgba(255,255,255,0.95),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+      letter-spacing: 0.3px;
+    }
+
+    .neuo-badge.green {
+      background: #ecfdf5;
+      color: #065f46;
+      box-shadow:
+        4px 4px 8px rgba(52,211,153,0.18),
+        -3px -3px 7px rgba(255,255,255,0.95),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp-card h3 { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+    .exp-card .exp-meta { font-size: 13px; color: var(--text-soft); font-family: 'Fira Code', monospace; margin-bottom: 18px; }
+
+    .exp-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .exp-card ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+    .exp-card ul li::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clay-blue), var(--clay-purple));
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid { display: grid; gap: 24px; }
+
+    .project-card { position: relative; }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 16px;
+    }
+
+    .project-title { font-size: 19px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+
+    .project-gif {
+      width: 56px; height: 56px;
+      border-radius: 18px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .stack-pills { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0; }
+
+    .stack-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      font-weight: 600;
+      font-family: 'Fira Code', monospace;
+      background: rgba(79,142,247,0.10);
+      color: #1d4ed8;
+      border: 1px solid rgba(79,142,247,0.20);
+    }
+
+    .stack-pill.purple { background: rgba(167,139,250,0.10); color: #5b21b6; border-color: rgba(167,139,250,0.25); }
+    .stack-pill.teal   { background: rgba(45,212,191,0.10);  color: #0f766e; border-color: rgba(45,212,191,0.25); }
+    .stack-pill.pink   { background: rgba(244,114,182,0.10); color: #9d174d; border-color: rgba(244,114,182,0.25); }
+    .stack-pill.amber  { background: rgba(251,191,36,0.10);  color: #92400e; border-color: rgba(251,191,36,0.25); }
+
+    .project-desc { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 14px; }
+
+    .project-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .project-points li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13.5px; color: var(--text-soft);
+    }
+    .project-points li::before {
+      content: "→";
+      color: var(--clay-blue);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* decorative corner blob on project cards */
+    .project-card::after {
+      content: "";
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .clay-blue.project-card::after  { background: var(--clay-blue); }
+    .clay-purple.project-card::after{ background: var(--clay-purple); }
+    .clay-pink.project-card::after  { background: var(--clay-pink); }
+
+    /* ─── CLOSING / CTA ─── */
+    .cta-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .cta-glass {
+      background: linear-gradient(135deg, #0d1b4b, #1a0533);
+      border-radius: 32px;
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .cta-glass::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(79,142,247,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 50%, rgba(167,139,250,0.20) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .cta-glass > * { position: relative; z-index: 1; }
+
+    .cta-glass h2 {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .cta-glass p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+      margin: 0 auto 30px;
+      line-height: 1.75;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--clay-blue), var(--clay-purple));
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 6px 0 rgba(79,142,247,0.5), 0 14px 28px rgba(79,142,247,0.30);
+      transition: all 0.25s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 rgba(79,142,247,0.5), 0 20px 36px rgba(79,142,247,0.38);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 30px 24px;
+      font-size: 13px;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(99,102,241,0.10);
+    }
+
+    footer span {
+      color: var(--clay-purple);
+      font-weight: 600;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      .hero-inner { flex-direction: column; text-align: center; gap: 28px; }
+      .hero-role::before { display: none; }
+      .hero-name { font-size: 30px; }
+      .hero-glass { padding: 28px 22px; }
+      .contact-pills { justify-content: center; }
+      .edu-card { flex-direction: column; align-items: flex-start; }
+      .edu-right { text-align: left; }
+      h2.section-title { font-size: 26px; }
+      .cta-glass { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO — GLASSMORPHISM ═══ -->
+<header class="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <img src="profile.png" alt="Arpita Sonparote">
+    </div>
+
+    <div class="hero-glass">
+      <h1 class="hero-name">Arpita Sonparote</h1>
+      <p class="hero-role">CS &amp; Engineering Student · AI &amp; Backend Developer</p>
+      <p class="hero-intro">
+        I build AI-powered applications and scalable backend systems using Python, FastAPI,
+        and modern data-driven technologies.
+      </p>
+      <div class="contact-pills">
+        <a class="c-pill" href="https://mail.google.com/mail/?view=cm&to=arpitasonparote@gmail.com" target="_blank">
+          <span class="icon">✉</span> arpitasonparote@gmail.com
+        </a>
+        <span class="c-pill"><span class="icon">📞</span> 9834544288</span>
+        <a class="c-pill" href="https://www.linkedin.com/in/arpita-sonparote-9b73a1313" target="_blank">
+          <span class="icon">🔗</span> LinkedIn
+        </a>
+        <a class="c-pill" href="https://github.com/Arpita368" target="_blank">
+          <span class="icon">💻</span> GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section">
+  <div class="section-label">About</div>
+  <h2 class="section-title">A bit about me</h2>
+  <div class="clay-card clay-blue reveal" style="font-size: 15px; color: var(--text-mid); line-height: 1.8;">
+    <p>I'm a Computer Science student with a minor in Cyber Security who enjoys building practical systems that combine AI, backend development, and problem-solving.</p>
+    <br>
+    <p>I like working on projects where I can take an idea → design architecture → build a working system.</p>
+    <br>
+    <p>Currently focused on building real-world projects, refining my development skills, and strengthening my foundation in Data Structures and Algorithms.</p>
+  </div>
+</section>
+
+
+<!-- ═══ WHAT I WORK ON ═══ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Focus Areas</div>
+  <h2 class="section-title">What I work on</h2>
+  <div class="work-grid">
+    <div class="clay-card clay-blue work-card reveal">
+      <div class="icon-wrap icon-blue">🤖</div>
+      <h3>AI &amp; Machine Learning</h3>
+      <p>Building AI-powered applications using LLMs, computer vision, and deep learning models to solve practical real-world problems.</p>
+    </div>
+    <div class="clay-card clay-purple work-card reveal" style="transition-delay: 0.08s;">
+      <div class="icon-wrap icon-purple">⚙️</div>
+      <h3>Backend Development</h3>
+      <p>Developing scalable backend systems and REST APIs using FastAPI and Flask, with focus on clean architecture and reliable performance.</p>
+    </div>
+    <div class="clay-card clay-teal work-card reveal" style="transition-delay: 0.16s;">
+      <div class="icon-wrap icon-teal">🧠</div>
+      <h3>Problem Solving</h3>
+      <p>Strengthening Data Structures and Algorithms through consistent practice, logical thinking, and optimized problem-solving approaches.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ EDUCATION ═══ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">Academic background</h2>
+  <div class="edu-grid">
+
+    <div class="clay-card clay-purple edu-card reveal">
+      <div class="edu-left">
+        <h3>B.Tech in Computer Science &amp; Engineering</h3>
+        <p class="school">Shri Guru Gobind Singhji Institute of Engineering and Technology, Nanded</p>
+      </div>
+      <div class="edu-right">
+        <p class="edu-year">2025 – 2028</p>
+        <span class="neuo-badge">CGPA: 9.5 (2nd Year)</span>
+      </div>
+    </div>
+
+    <div class="clay-card clay-teal edu-card reveal" style="transition-delay: 0.1s;">
+      <div class="edu-left">
+        <h3>Diploma in Computer Engineering</h3>
+        <p class="school">Government Polytechnic, Amravati</p>
+      </div>
+      <div class="edu-right">
+        <p class="edu-year">2022 – 2025</p>
+        <span class="neuo-badge green">Score: 94.53%</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Where I've worked</h2>
+  <div class="clay-card clay-amber exp-card reveal">
+    <h3>IoT Intern — MDB Electrosoft Pvt. Ltd.</h3>
+    <p class="exp-meta">▸ June 2024 – July 2024</p>
+    <ul>
+      <li>Worked on end-to-end IoT system development involving sensor integration, testing, and real-time hardware interaction.</li>
+      <li>Developed a Smart Street Lighting system using infrared sensors to detect day and night conditions for automatic light control.</li>
+      <li>Implemented ultrasonic sensor-based motion detection to predict movement and pre-activate upcoming street lights for improved safety and energy efficiency.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══ PROJECTS ═══ -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">Things I've built</h2>
+  <div class="projects-grid">
+
+    <div class="clay-card clay-blue project-card reveal">
+      <div class="project-header">
+        <div>
+          <p class="project-title">🧠 Pharmacy Agentic AI</p>
+        </div>
+        <img src="pharmacy.gif" class="project-gif" alt="Pharmacy AI">
+      </div>
+      <div class="stack-pills">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill purple">FastAPI</span>
+        <span class="stack-pill teal">Ollama</span>
+        <span class="stack-pill pink">Gemini API</span>
+        <span class="stack-pill amber">MySQL</span>
+        <span class="stack-pill">FAISS</span>
+      </div>
+      <p class="project-desc">An AI-powered pharmacy assistant for intelligent medicine search, prescription understanding, and contextual medical assistance.</p>
+      <ul class="project-points">
+        <li>Integrated LLMs using Ollama and Gemini API</li>
+        <li>Implemented OCR-based prescription scanning</li>
+        <li>Designed backend APIs using FastAPI</li>
+      </ul>
+    </div>
+
+    <div class="clay-card clay-teal project-card reveal">
+      <div class="project-header">
+        <div>
+          <p class="project-title">🌿 Plant Disease Detection</p>
+        </div>
+        <img src="plant.gif" class="project-gif" alt="Plant Disease">
+      </div>
+      <div class="stack-pills">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill purple">CNN</span>
+        <span class="stack-pill teal">OpenCV</span>
+        <span class="stack-pill">NumPy</span>
+      </div>
+      <p class="project-desc">A CNN-based system to detect plant diseases and provide crop-related insights using deep learning and image processing.</p>
+      <ul class="project-points">
+        <li>Built deep learning classification model</li>
+        <li>Applied preprocessing and augmentation techniques</li>
+        <li>Used OpenCV for image processing workflows</li>
+      </ul>
+    </div>
+
+    <div class="clay-card clay-pink project-card reveal">
+      <div class="project-header">
+        <div>
+          <p class="project-title">🏥 Virtual Health Assistant</p>
+        </div>
+        <img src="health.gif" class="project-gif" alt="Health Assistant">
+      </div>
+      <div class="stack-pills">
+        <span class="stack-pill amber">Java</span>
+        <span class="stack-pill">Servlets</span>
+        <span class="stack-pill purple">JSP</span>
+        <span class="stack-pill teal">MySQL</span>
+      </div>
+      <p class="project-desc">A role-based healthcare management system for patients and doctors with secure workflows and medical record management.</p>
+      <ul class="project-points">
+        <li>Implemented secure doctor-patient workflows</li>
+        <li>Managed medical records using MySQL</li>
+        <li>Built backend system using Java Servlets and JSP</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ CTA / CLOSING ═══ -->
+<div class="cta-section">
+  <div class="cta-glass reveal">
+    <h2>Open to Opportunities</h2>
+    <p>
+      I'm actively looking for opportunities where I can contribute to backend systems,
+      AI-driven applications, and scalable software products — while also exploring practical
+      cybersecurity through real-world engineering experience.
+    </p>
+    <a class="cta-btn" href="https://mail.google.com/mail/?view=cm&to=arpitasonparote@gmail.com" target="_blank">
+      ✉ Get in touch
+    </a>
+  </div>
+</div>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>© 2026 <span>Arpita Sonparote</span> · Built with curiosity and code</p>
+</footer>
+
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arpita Sonparote | Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HERO -->
+  <!-- HERO ->
   <header class="hero">
     <div class="hero-container">
 
-      <!-- LEFT: PHOTO -->
+      <!-- LEFT: PHOTO ->
       <div class="hero-left">
         <img src="profile.png" alt="Arpita Sonparote">
       </div>
 
-      <!-- RIGHT: TEXT -->
+      <!-- RIGHT: TEXT ->
       <div class="hero-right">
 
         <h1>Arpita Sonparote</h1>
@@ -32,7 +846,7 @@
           and modern data-driven technologies.
         </p>
 
-        <!-- CONTACT GRID -->
+        <!-- CONTACT GRID ->
         <div class="contact-grid">
 
           <div class="contact-item">
@@ -67,7 +881,7 @@
   </header>
 
 
-  <!-- ABOUT -->
+  <!-- ABOUT ->
   <section>
     <h2>About Me</h2>
 
@@ -112,7 +926,7 @@
   </section>
 
 
-  <!-- EDUCATION -->
+  <!-- EDUCATION ->
   <section>
     <h2>Education</h2>
 
@@ -146,7 +960,7 @@
   </section>
 
 
-  <!-- EXPERIENCE -->
+  <!-- EXPERIENCE ->
   <section>
     <h2>Experience</h2>
 
@@ -174,7 +988,7 @@
   </section>
 
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS ->
   <section>
     <h2>Projects</h2>
 
@@ -248,10 +1062,11 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- FOOTER ->
   <footer>
     <p>© 2026 Arpita Sonparote • Built with curiosity and code</p>
   </footer>
 
 </body>
 </html>
+-->
