@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Arpita Sonparote</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+
+--clay-blue:#4f8ef7;
+--clay-purple:#a78bfa;
+--clay-teal:#2dd4bf;
+--clay-pink:#f472b6;
+--clay-green:#34d399;
+--clay-amber:#fbbf24;
+
+--bg:#eef2ff;
+--surface:#ffffff;
+
+--text-dark:#0f172a;
+--text-mid:#334155;
+--text-soft:#64748b;
+
+--radius:30px;
+--pill:60px;
+
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Plus Jakarta Sans',sans-serif;
+
+background:var(--bg);
+
+background-image:
+
+radial-gradient(circle at 10% 0%,rgba(79,142,247,.15),transparent 45%),
+
+radial-gradient(circle at 90% 0%,rgba(167,139,250,.12),transparent 40%),
+
+radial-gradient(circle at 70% 100%,rgba(45,212,191,.12),transparent 40%);
+
+color:var(--text-dark);
+
+overflow-x:hidden;
+
+line-height:1.7;
+
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+background:rgba(238,242,255,.82);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(79,142,247,.1);
+
+}
+
+.nav-inner{
+
+max-width:1100px;
+
+margin:auto;
+
+height:64px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+}
+
+.logo{
+
+font-size:18px;
+
+font-weight:800;
+
+text-decoration:none;
+
+color:var(--text-dark);
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.logo-dot{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,var(--clay-blue),var(--clay-purple));
+
+}
+
+.nav-links{
+
+display:flex;
+
+list-style:none;
+
+gap:8px;
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+
+font-weight:600;
+
+font-size:14px;
+
+color:var(--text-soft);
+
+padding:8px 18px;
+
+border-radius:40px;
+
+transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+background:rgba(79,142,247,.12);
+
+color:var(--clay-blue);
+
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+position:relative;
+
+padding:100px 20px;
+
+overflow:hidden;
+
+}
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(135deg,#07143f,#111827,#2c0b46);
+
+z-index:0;
+
+}
+
+.orb{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(80px);
+
+animation:float 8s ease-in-out infinite;
+
+}
+
+.orb.one{
+
+width:350px;
+
+height:350px;
+
+background:rgba(79,142,247,.28);
+
+top:-100px;
+
+left:-120px;
+
+}
+
+.orb.two{
+
+width:260px;
+
+height:260px;
+
+background:rgba(167,139,250,.28);
+
+right:-80px;
+
+top:50px;
+
+animation-delay:2s;
+
+}
+
+.orb.three{
+
+width:220px;
+
+height:220px;
+
+background:rgba(45,212,191,.25);
+
+bottom:-60px;
+
+left:45%;
+
+animation-delay:4s;
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:translateY(-25px);
+
+}
+
+}
+
+.hero-inner{
+
+position:relative;
+
+z-index:2;
+
+max-width:1100px;
+
+margin:auto;
+
+text-align:center;
+
+}
+
+.hero-small{
+
+color:rgba(255,255,255,.6);
+
+font-size:12px;
+
+letter-spacing:4px;
+
+text-transform:uppercase;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+.hero h1{
+
+font-size:clamp(42px,6vw,70px);
+
+font-weight:800;
+
+color:#fff;
+
+margin-bottom:20px;
+
+line-height:1.1;
+
+}
+
+.hero h1 span{
+
+background:linear-gradient(135deg,var(--clay-blue),var(--clay-purple),var(--clay-pink));
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.hero p{
+
+max-width:720px;
+
+margin:auto;
+
+font-size:18px;
+
+color:rgba(255,255,255,.72);
+
+}
+
+.hero-buttons{
+
+margin-top:40px;
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.hero-btn{
+
+padding:14px 28px;
+
+border-radius:50px;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.hero-btn.primary{
+
+background:linear-gradient(135deg,var(--clay-blue),var(--clay-purple));
+
+color:#fff;
+
+box-shadow:0 8px 25px rgba(79,142,247,.35);
+
+}
+
+.hero-btn.secondary{
+
+border:1px solid rgba(255,255,255,.2);
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+color:#fff;
+
+}
+
+.hero-btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+/* ================= CONTENT ================= */
+
+.container{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:70px 20px;
+
+}
+
+.section-title{
+
+font-size:34px;
+
+font-weight:800;
+
+margin-bottom:35px;
+
+letter-spacing:-1px;
+
+}
+
+.clay{
+
+background:white;
+
+border-radius:30px;
+
+padding:40px;
+
+border:1px solid rgba(255,255,255,.95);
+
+box-shadow:
+
+0 10px 0 #4f8ef7,
+
+0 22px 40px rgba(79,142,247,.18);
+
+transition:.3s;
+
+}
+
+.clay:hover{
+
+transform:translateY(-8px);
+
+}
+
+.about-text{
+
+font-size:17px;
+
+color:var(--text-mid);
+
+margin-bottom:18px;
+
+}
+
+.about-text strong{
+
+color:var(--clay-blue);
+
+}
+
+/* ================= SKILLS ================= */
+
+.skills-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:24px;
+
+margin-top:40px;
+
+}
+
+.skill-card{
+
+background:white;
+
+padding:28px;
+
+border-radius:26px;
+
+box-shadow:
+
+0 8px 0 #15a88f,
+
+0 18px 35px rgba(45,212,191,.18);
+
+transition:.3s;
+
+}
+
+.skill-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.skill-card h3{
+
+font-size:18px;
+
+margin-bottom:15px;
+
+color:var(--clay-blue);
+
+}
+
+.skill-card p{
+
+color:var(--text-mid);
+
+line-height:1.8;
+
+}
+
+/* Resume and Contact CSS continues in Part 2 */
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="nav-inner">
+
+<a class="logo" href="index.html">
+
+<div class="logo-dot"></div>
+
+Arpita Sonparote
+
+</a>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="projects.html">Projects</a></li>
+
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="orb three"></div>
+
+<div class="hero-inner">
+
+<div class="hero-small">
+
+GET TO KNOW ME
+
+</div>
+
+<h1>
+
+About <span>Me</span>
+
+</h1>
+
+<p>
+
+Computer Science undergraduate passionate about Backend Development, Artificial Intelligence, and building scalable software solutions that create real-world impact.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#about" class="hero-btn primary">
+
+Explore
+
+</a>
+
+<a href="Arpita_Sonparote_Resume.pdf" download class="hero-btn secondary">
+
+Download Resume
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<section id="about">
+
+<h2 class="section-title">
+
+About Me
+
+</h2>
+
+<div class="clay">
+
+<p class="about-text">
+
+Hi! I'm <strong>Arpita Sonparote</strong>, a Computer Science undergraduate with a strong passion for building intelligent software solutions that combine Artificial Intelligence with modern backend technologies.
+
+</p>
+
+<p class="about-text">
+
+I enjoy transforming ideas into practical applications—from AI-powered healthcare assistants and predictive analytics systems to full-stack web applications and computer vision projects. My focus is on writing clean, scalable, and maintainable code while solving real-world problems.
+
+</p>
+
+<p class="about-text">
+
+I have experience working with Python, Java, FastAPI, PostgreSQL, REST APIs, and Large Language Model applications. Alongside development, I actively strengthen my problem-solving abilities through Data Structures & Algorithms and continuously explore new technologies.
+
+</p>
+
+</div>
+
+</section>
+
+<section style="margin-top:90px;">
+
+<h2 class="section-title">
+
+Technical Skills
+
+</h2>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+
+<h3>Languages</h3>
+
+<p>
+
+Python<br>
+Java<br>
+SQL
+
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>Backend & Databases</h3>
+
+<p>
+
+FastAPI<br>
+REST APIs<br>
+PostgreSQL<br>
+FAISS
+
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>AI / ML</h3>
+
+<p>
+
+RAG<br>
+LLM Applications<br>
+CNN<br>
+OpenCV
+
+</p>
+
+</div>
+<div class="skill-card">
+
+<h3>Core CS</h3>
+
+<p>
+
+Data Structures & Algorithms<br>
+Object-Oriented Programming<br>
+Operating Systems<br>
+Computer Networks<br>
+DBMS
+
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>Tools</h3>
+
+<p>
+
+Git<br>
+GitHub<br>
+VS Code<br>
+Ollama
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= RESUME ================= -->
+
+<section style="margin-top:90px;">
+
+<h2 class="section-title">
+
+Resume
+
+</h2>
+
+<div class="clay" style="text-align:center;">
+
+<p class="about-text" style="margin-bottom:30px;">
+
+Interested in learning more about my projects, technical expertise, and experience?
+Download my latest resume below.
+
+</p>
+
+<a href="Arpita_Sonparote_Resume.pdf" download class="hero-btn primary">
+
+⬇ Download Resume
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section style="margin-top:90px; margin-bottom:80px;">
+
+<h2 class="section-title">
+
+Get In Touch
+
+</h2>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+
+<h3>📧 Email</h3>
+
+<p>
+
+arpitasonparote@gmail.com
+
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>📱 Phone</h3>
+
+<p>
+
++91 98345 44288
+
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>💻 GitHub</h3>
+
+<p>
+
+github.com/Arpita368
+
+</p>
+
+</div>
+
+<div class="skill-card">
+
+<h3>💼 LinkedIn</h3>
+
+<p>
+
+linkedin.com/in/arpita-sonparote-9b73a1313
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+
+© 2026 Arpita Sonparote
+
+</p>
+
+</footer>
+
+<style>
+
+footer{
+
+background:#0f172a;
+
+padding:35px;
+
+text-align:center;
+
+color:#cbd5e1;
+
+font-size:15px;
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+.hero{
+
+padding:80px 20px;
+
+}
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.section-title{
+
+font-size:28px;
+
+}
+
+.clay{
+
+padding:28px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.nav-inner{
+
+flex-direction:column;
+
+height:auto;
+
+padding:16px;
+
+gap:15px;
+
+}
+
+.nav-links{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.hero-btn{
+
+width:220px;
+
+text-align:center;
+
+}
+
+.skills-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.hero h1{
+
+font-size:38px;
+
+}
+
+.hero p{
+
+font-size:15px;
+
+}
+
+.about-text{
+
+font-size:15px;
+
+}
+
+}
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:all .8s ease;
+
+}
+
+.reveal.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+</style>
+
+<script>
+
+const reveals=document.querySelectorAll(".clay,.skill-card");
+
+function revealCards(){
+
+reveals.forEach(card=>{
+
+const top=card.getBoundingClientRect().top;
+
+const trigger=window.innerHeight-100;
+
+if(top<trigger){
+
+card.classList.add("active");
+
+}
+
+});
+
+}
+
+window.addEventListener("scroll",revealCards);
+
+revealCards();
+
+</script>
+
+</body>
+
+</html>

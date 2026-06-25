@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Arpita Sonparote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay-blue:   #4f8ef7;
+      --clay-purple: #a78bfa;
+      --clay-teal:   #2dd4bf;
+      --clay-pink:   #f472b6;
+      --clay-green:  #34d399;
+      --clay-amber:  #fbbf24;
+      --bg:          #eef2ff;
+      --surface:     #ffffff;
+      --text-dark:   #0f172a;
+      --text-mid:    #334155;
+      --text-soft:   #64748b;
+      --r-clay:      28px;
+      --r-pill:      50px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 10% 0%,   rgba(79,142,247,0.13) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%,  rgba(167,139,250,0.12) 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 90%,  rgba(45,212,191,0.09) 0%, transparent 40%);
+      color: var(--text-dark);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV BAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(238,242,255,0.82);
+      border-bottom: 1px solid rgba(99,102,241,0.12);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1060px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-size: 15px; font-weight: 800;
+      color: var(--text-dark);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .nav-logo .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--clay-blue), var(--clay-purple));
+    }
+
+    .nav-links { display: flex; gap: 6px; }
+
+    .nav-links a {
+      font-size: 13px; font-weight: 600; color: var(--text-soft);
+      text-decoration: none;
+      padding: 6px 14px; border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(79,142,247,0.10);
+      color: var(--clay-blue);
+    }
+
+    /* ── HERO ── */
+    .page-hero {
+      position: relative;
+      padding: 72px 24px 80px;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #0d1b4b 0%, #0f172a 55%, #1a0533 100%);
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(60px); pointer-events: none; z-index: 0;
+    }
+    .orb1 { width: 360px; height: 360px; background: rgba(79,142,247,0.30); top: -100px; left: -80px; animation: floatOrb 8s ease-in-out infinite; }
+    .orb2 { width: 280px; height: 280px; background: rgba(167,139,250,0.28); top: 20px; right: -60px; animation: floatOrb 8s ease-in-out infinite -3s; }
+    .orb3 { width: 200px; height: 200px; background: rgba(45,212,191,0.22); bottom: -40px; left: 45%; animation: floatOrb 8s ease-in-out infinite -5.5s; }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-18px); }
+    }
+
+    .page-hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1060px; margin: auto;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 3px; color: rgba(255,255,255,0.55);
+      margin-bottom: 18px;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ""; display: block;
+      width: 24px; height: 1.5px;
+      background: rgba(255,255,255,0.25); border-radius: 2px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .page-hero h1 span {
+      background: linear-gradient(135deg, var(--clay-blue), var(--clay-purple), var(--clay-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.60);
+      max-width: 520px; margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    /* filter pills in hero */
+    .filter-row {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 10px;
+    }
+
+    .filter-btn {
+      padding: 9px 20px;
+      border-radius: var(--r-pill);
+      font-size: 13px; font-weight: 600;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.75);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.22s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(79,142,247,0.30);
+      border-color: rgba(79,142,247,0.55);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── PROJECT BLOCK ── */
+    .project-block {
+      margin-bottom: 72px;
+    }
+
+    /* project header strip */
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .project-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px; font-weight: 500;
+      color: var(--text-soft);
+      padding-top: 6px;
+      flex-shrink: 0;
+      min-width: 32px;
+    }
+
+    .project-meta { flex: 1; }
+
+    .project-title {
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.6px;
+      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-tag {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    .more-shot{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    min-height:220px;
+}
+
+.more-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.plus{
+    font-size:60px;
+    font-weight:bold;
+}
+
+.more-content span:last-child{
+    font-size:18px;
+    margin-top:10px;
+}
+
+    .tag-ai     { background: rgba(79,142,247,0.12); color: #1d4ed8; }
+    .tag-ml     { background: rgba(167,139,250,0.12); color: #5b21b6; }
+    .tag-web    { background: rgba(45,212,191,0.12);  color: #0f766e; }
+    .tag-iot    { background: rgba(251,191,36,0.12);  color: #92400e; }
+    .tag-health { background: rgba(244,114,182,0.12); color: #9d174d; }
+
+    .project-tagline {
+      font-size: 15px;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* project body: two-column or full */
+    .project-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .project-body.full { grid-template-columns: 1fr; }
+
+    /* ── CLAY CARD BASE ── */
+    .clay {
+      background: var(--surface);
+      border-radius: var(--r-clay);
+      border: 1.5px solid rgba(255,255,255,0.92);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s ease;
+    }
+    .clay:hover { transform: translateY(-6px) scale(1.01); }
+
+    .clay-b { box-shadow: 0 8px 0 #3b7de9,  0 14px 32px rgba(79,142,247,0.18),  inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-p { box-shadow: 0 8px 0 #7c5fd4,  0 14px 32px rgba(167,139,250,0.18), inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-t { box-shadow: 0 8px 0 #15a88f,  0 14px 32px rgba(45,212,191,0.18),  inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-pk{ box-shadow: 0 8px 0 #db2777,  0 14px 32px rgba(244,114,182,0.18), inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-a { box-shadow: 0 8px 0 #d89e0b,  0 14px 32px rgba(251,191,36,0.18),  inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    .clay-b:hover { box-shadow: 0 4px 0 #3b7de9,  0 20px 40px rgba(79,142,247,0.26),  inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-p:hover { box-shadow: 0 4px 0 #7c5fd4,  0 20px 40px rgba(167,139,250,0.26), inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-t:hover { box-shadow: 0 4px 0 #15a88f,  0 20px 40px rgba(45,212,191,0.26),  inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-pk:hover{ box-shadow: 0 4px 0 #db2777,  0 20px 40px rgba(244,114,182,0.26), inset 0 1px 0 rgba(255,255,255,0.95); }
+    .clay-a:hover { box-shadow: 0 4px 0 #d89e0b,  0 20px 40px rgba(251,191,36,0.26),  inset 0 1px 0 rgba(255,255,255,0.95); }
+
+    /* top accent line */
+    .clay[data-accent]::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      border-radius: var(--r-clay) var(--r-clay) 0 0;
+    }
+
+    /* ── SCREENSHOT GALLERY CARD ── */
+    .gallery-card {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .gallery-main {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--r-clay) var(--r-clay) 0 0;
+      background: #e2e8f0;
+    }
+
+    /* placeholder when no image yet */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--r-clay) var(--r-clay) 0 0;
+      background: linear-gradient(135deg, #e0e7ff, #f0f4ff);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; color: #94a3b8;
+      font-size: 13px; font-weight: 600;
+      border-bottom: 1px dashed rgba(99,102,241,0.20);
+    }
+
+    .img-placeholder .ph-icon { font-size: 36px; opacity: 0.4; }
+    .img-placeholder .ph-label { font-family: 'Fira Code', monospace; font-size: 11px; opacity: 0.6; }
+
+    /* thumbnail strip */
+    .thumb-strip {
+      display: flex; gap: 8px;
+      padding: 12px 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-top: 1px solid rgba(99,102,241,0.08);
+      background: rgba(238,242,255,0.6);
+      border-radius: 0 0 var(--r-clay) var(--r-clay);
+    }
+    .thumb-strip::-webkit-scrollbar { display: none; }
+
+    .thumb {
+      width: 68px; height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.18s ease;
+      background: #dde3f0;
+    }
+
+    .thumb.active { border-color: var(--clay-blue); }
+    .thumb:hover  { border-color: var(--clay-purple); transform: scale(1.06); }
+
+    /* add-more thumb */
+    .thumb-add {
+      width: 68px; height: 44px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      border: 2px dashed rgba(99,102,241,0.28);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: rgba(99,102,241,0.45);
+      cursor: pointer; transition: all 0.18s ease;
+    }
+    .thumb-add:hover { background: rgba(99,102,241,0.06); border-color: rgba(99,102,241,0.55); color: var(--clay-purple); }
+
+    .caption-bar {
+      padding: 10px 16px 14px;
+      font-size: 12px;
+      color: var(--text-soft);
+      font-family: 'Fira Code', monospace;
+      border-top: 1px solid rgba(99,102,241,0.06);
+    }
+
+    /* ── INFO CARD ── */
+    .info-card { padding: 28px; }
+
+    .info-card h3 {
+      font-size: 14px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.8px; color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+
+    /* stack pills */
+    .stack-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+
+    .s-pill {
+      display: inline-block; padding: 5px 13px;
+      border-radius: 20px; font-size: 11.5px; font-weight: 600;
+      font-family: 'Fira Code', monospace;
+    }
+    .s-b  { background: rgba(79,142,247,0.10);  color: #1d4ed8; border: 1px solid rgba(79,142,247,0.22); }
+    .s-p  { background: rgba(167,139,250,0.10); color: #5b21b6; border: 1px solid rgba(167,139,250,0.25); }
+    .s-t  { background: rgba(45,212,191,0.10);  color: #0f766e; border: 1px solid rgba(45,212,191,0.25); }
+    .s-pk { background: rgba(244,114,182,0.10); color: #9d174d; border: 1px solid rgba(244,114,182,0.25); }
+    .s-a  { background: rgba(251,191,36,0.10);  color: #92400e; border: 1px solid rgba(251,191,36,0.25); }
+    .s-g  { background: rgba(52,211,153,0.10);  color: #065f46; border: 1px solid rgba(52,211,153,0.25); }
+
+    /* feature list */
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 22px; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13.5px; color: var(--text-mid); line-height: 1.6;
+    }
+    .feat-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; flex-shrink: 0; margin-top: 1px;
+      font-weight: 700; color: #fff;
+    }
+    .fd-b  { background: var(--clay-blue); }
+    .fd-p  { background: var(--clay-purple); }
+    .fd-t  { background: var(--clay-teal); }
+    .fd-pk { background: var(--clay-pink); }
+    .fd-a  { background: var(--clay-amber); }
+
+    /* divider between info sections */
+    .info-divider {
+      height: 1px;
+      background: rgba(99,102,241,0.09);
+      margin: 18px 0;
+    }
+
+    /* links row */
+    .links-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: var(--r-pill);
+      font-size: 13px; font-weight: 600;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      border: 1.5px solid transparent;
+    }
+
+    .link-github {
+      background: #0f172a; color: #fff;
+    }
+    .link-github:hover { background: #1e293b; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(15,23,42,0.25); }
+
+    .link-demo {
+      background: linear-gradient(135deg, var(--clay-blue), var(--clay-purple));
+      color: #fff;
+      box-shadow: 0 4px 0 rgba(79,142,247,0.4);
+    }
+    .link-demo:hover { transform: translateY(-3px); box-shadow: 0 7px 0 rgba(79,142,247,0.4), 0 14px 28px rgba(79,142,247,0.22); }
+
+    .link-ghost {
+      border-color: rgba(99,102,241,0.22);
+      color: var(--text-mid);
+    }
+    .link-ghost:hover { background: rgba(99,102,241,0.07); border-color: rgba(99,102,241,0.38); }
+
+    /* Main Gallery */
+.wide-gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:20px;
+}
+
+.wide-shot img{
+    width:100%;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.wide-shot img:hover{
+    transform:scale(1.03);
+}
+
+.shot-label{
+    display:block;
+    margin-top:8px;
+    text-align:center;
+    font-size:14px;
+}
+
+/* +4 Card */
+
+.more-images{
+    height:220px;
+    border-radius:12px;
+    background:#222;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:42px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.more-images:hover{
+    background:#444;
+}
+
+
+/* Popup */
+
+.gallery-popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:9999;
+}
+
+.gallery-content{
+    width:85%;
+    max-width:950px;
+    max-height:80vh;        /* Limits popup height */
+    overflow-y:auto;        /* Enables vertical scrolling */
+    background:#fff;
+    margin:50px auto;
+    padding:25px;
+    border-radius:16px;
+    position:relative;
+    animation:popup .25s ease;
+}
+
+.close-popup{
+    position:sticky;
+    top:0;
+    float:right;
+    font-size:35px;
+    cursor:pointer;
+    background:#fff;
+    padding:5px 10px;
+    z-index:10;
+}
+
+/* Chrome, Edge, Safari */
+.gallery-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.gallery-content::-webkit-scrollbar-track{
+    background:#f1f1f1;
+    border-radius:10px;
+}
+
+.gallery-content::-webkit-scrollbar-thumb{
+    background:#888;
+    border-radius:10px;
+}
+
+.gallery-content::-webkit-scrollbar-thumb:hover{
+    background:#555;
+}
+
+/* Firefox */
+.gallery-content{
+    scrollbar-width:thin;
+    scrollbar-color:#888 #f1f1f1;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.9);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.close-popup{
+    position:absolute;
+    right:20px;
+    top:10px;
+    font-size:35px;
+    cursor:pointer;
+}
+
+.popup-gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-top:20px;
+}
+
+.popup-gallery img{
+    width:100%;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+    /* ── WIDE IMAGE ROW (full-width screenshots) ── */
+    .wide-gallery {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .wide-shot {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .wide-shot img {
+      width: 100%; display: block;
+      aspect-ratio: 4/3; object-fit: cover;
+      background: #dde3f0;
+      transition: transform 0.35s ease;
+    }
+    .wide-shot:hover img { transform: scale(1.04); }
+
+    .wide-shot .shot-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px 14px 10px;
+      background: linear-gradient(to top, rgba(10,15,40,0.70), transparent);
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      font-family: 'Fira Code', monospace;
+    }
+
+    .ph-wide {
+      aspect-ratio: 4/3;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #e8edff, #f5f0ff);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; color: #94a3b8;
+      border: 2px dashed rgba(99,102,241,0.20);
+    }
+    .ph-wide .ph-icon { font-size: 28px; opacity: 0.35; }
+    .ph-wide .ph-label { font-size: 10px; font-family: 'Fira Code', monospace; opacity: 0.5; }
+
+    /* ── SECTION DIVIDER ── */
+    .project-sep {
+      display: flex; align-items: center; gap: 16px;
+      margin: 0 0 64px;
+      color: rgba(99,102,241,0.30);
+      font-size: 11px; font-family: 'Fira Code', monospace;
+    }
+    .project-sep::before, .project-sep::after {
+      content: "";
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(99,102,241,0.18), transparent);
+    }
+
+    .hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.hero-btn{
+    padding:14px 28px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s;
+}
+
+.hero-btn.primary{
+    background:linear-gradient(135deg,#4f8ef7,#a78bfa);
+    color:#fff;
+}
+
+.hero-btn.secondary{
+    border:2px solid rgba(255,255,255,.25);
+    color:white;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(8px);
+}
+
+.hero-btn:hover{
+    transform:translateY(-4px);
+}
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(5,8,22,0.88);
+      backdrop-filter: blur(10px);
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    #lb-close {
+      position: absolute; top: 20px; right: 24px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.20);
+      color: #fff; font-size: 22px; width: 42px; height: 42px;
+      border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    #lb-close:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 28px 24px;
+      font-size: 13px; color: var(--text-soft);
+      border-top: 1px solid rgba(99,102,241,0.10);
+    }
+    footer a { color: var(--clay-blue); text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .project-body { grid-template-columns: 1fr; }
+      .wide-gallery  { grid-template-columns: 1fr 1fr; }
+      .page-hero h1 { font-size: 32px; }
+      .project-title { font-size: 22px; }
+    }
+    @media (max-width: 500px) {
+      .wide-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="dot"></span>Arpita Sonparote
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ── HERO ── -->
+<header class="page-hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="page-hero-inner">
+    <p class="hero-eyebrow">My work</p>
+    <h1>Things I've <span>built</span></h1>
+    <p>A collection of projects spanning AI, backend systems, and healthcare tech — each one a chance to learn something new.</p>
+    <div class="hero-buttons">
+    <a href="#projects" class="hero-btn primary">Explore Projects ↓</a>
+    <a href="resume.pdf" class="hero-btn secondary" download>Download Resume</a>
+</div>
+    <br><br><br><br>
+  </div>
+  
+</header>
+
+
+<!-- ── PROJECTS ── -->
+<main class="content">
+
+
+  <!-- ══ PROJECT 1: Pharmacy Agentic AI ══ -->
+  <div class="project-block reveal" data-category="ai">
+
+    <div class="project-header">
+      <span class="project-num">01</span>
+      <div class="project-meta">
+        <h2 class="project-title">
+          Pharmacy Agentic AI
+          <span class="project-tag tag-ai">AI</span>
+        </h2>
+        <p class="project-tagline">An intelligent pharmacy assistant that reads prescriptions, searches medicines, and answers medical queries using LLMs and RAG.</p>
+      </div>
+    </div>
+
+    <div class="project-body">
+
+      <!-- LEFT: Screenshot gallery card -->
+      <div class="clay clay-b gallery-card">
+
+        <!-- Replace src with your actual screenshot paths -->
+        <img
+    class="gallery-main"
+    id="gallery-pharmacy-main"
+    src="screenshots/pharmacy-main.png"
+    alt="Pharmacy AI Dashboard"
+    onclick="openLightbox(this.src)">
+        <!-- Uncomment and fill in when you have screenshots:
+        <img class="gallery-main" id="gallery-pharmacy-main"
+             src="screenshots/pharmacy-main.png" alt="Pharmacy AI dashboard">
+        -->
+
+        
+        
+      </div>
+
+      <!-- RIGHT: Info card -->
+      <div class="clay clay-b info-card">
+        <h3>Tech Stack</h3>
+        <div class="stack-row">
+          <span class="s-pill s-b">Python</span>
+          <span class="s-pill s-p">FastAPI</span>
+          <span class="s-pill s-t">Ollama</span>
+          <span class="s-pill s-pk">Gemini API</span>
+          <span class="s-pill s-a">MySQL</span>
+          <span class="s-pill s-b">FAISS</span>
+          <span class="s-pill s-g">LangChain</span>
+        </div>
+
+        <div class="info-divider"></div>
+        <h3>Key Features</h3>
+        <ul class="feature-list">
+          <li><span class="feat-dot fd-b">✓</span>LLM-powered medicine search using Ollama + Gemini API with RAG pipeline</li>
+          <li><span class="feat-dot fd-p">✓</span>OCR-based prescription scanning for automatic drug extraction</li>
+          <li><span class="feat-dot fd-t">✓</span>FAISS vector store for semantic similarity search across drug database</li>
+          <li><span class="feat-dot fd-pk">✓</span>FastAPI REST backend with structured endpoints for frontend integration</li>
+          <li><span class="feat-dot fd-b">✓</span>Contextual medical Q&A with memory-aware conversation flow</li>
+        </ul>
+
+        <div class="info-divider"></div>
+        <div class="links-row">
+          <a class="proj-link link-github" href="https://github.com/Arpita368/Pharmacy-Agentic-AI" target="_blank">⌥ GitHub</a>
+          <!-- <a class="proj-link link-demo" href="#" target="_blank">↗ Live Demo</a> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Wide additional screenshots (3-up grid) -->
+     
+    <div class="wide-gallery">
+
+  <!-- Image 1 -->
+  <div class="wide-shot">
+    <img src="screenshots/symptom-assistance.png"
+         alt="Symptom Assistance"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">Symptom Assistance</span>
+  </div>
+
+  <!-- Image 2 -->
+  <div class="wide-shot">
+    <img src="screenshots/medicine-order.png"
+         alt="Medicine Order"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">Medicine Order</span>
+  </div>
+
+  <!-- + More Images -->
+  <div class="more-images" onclick="openGalleryPopup()">
+    <span>+4</span>
+  </div>
+
+</div>
+
+
+<!-- Popup -->
+<div id="galleryPopup" class="gallery-popup">
+
+  <div class="gallery-content">
+
+    <span class="close-popup" onclick="closeGalleryPopup()">&times;</span>
+
+    <h3>More Screenshots</h3>
+
+    <div class="popup-gallery">
+
+      <div class="wide-shot">
+        <img src="screenshots/prescription-scan.png"
+             alt="Prescription Scanner"
+             onclick="openImageFromPopup(this.src)">
+        <span class="shot-label">Prescription Scanner</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/medicine-search.png"
+             alt="Medicine Search"
+             onclick="openImageFromPopup(this.src)">
+        <span class="shot-label">Medicine Search</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/cart.png"
+             alt="Cart"
+             onclick="openImageFromPopup(this.src)">
+        <span class="shot-label">Cart</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/inventory.png"
+             alt="Inventory"
+             onclick="openImageFromPopup(this.src)">
+        <span class="shot-label">Inventory</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+  </div>
+
+  <div class="project-sep"></div>
+
+
+  <!-- ══ PROJECT 2: Bank Customer Churn Prediction ══ -->
+<div class="project-block reveal" data-category="ai">
+
+<div class="project-header">
+<span class="project-num">02</span>
+
+<div class="project-meta">
+
+<h2 class="project-title">
+Bank Customer Churn Prediction
+<span class="project-tag tag-ml">ML</span>
+</h2>
+
+<p class="project-tagline">
+End-to-end machine learning pipeline that predicts banking customer churn using customer behavioral, financial, and engagement data to support proactive retention strategies.
+</p>
+
+</div>
+</div>
+
+<div class="project-body">
+
+<div class="clay clay-p gallery-card">
+
+<img
+    class="gallery-main"
+    id="gallery-pharmacy-main"
+    src="screenshots/heatmap.png"
+    alt="Correlation Heatmap.png"
+    onclick="openLightbox(this.src)">
+
+</div>
+
+<div class="clay clay-p info-card">
+
+<h3>Tech Stack</h3>
+
+<div class="stack-row">
+
+<span class="s-pill s-b">Python</span>
+
+<span class="s-pill s-p">Scikit-Learn</span>
+
+<span class="s-pill s-t">Pandas</span>
+
+<span class="s-pill s-g">NumPy</span>
+
+<span class="s-pill s-a">Matplotlib</span>
+
+<span class="s-pill s-b">Joblib</span>
+
+</div>
+
+<div class="info-divider"></div>
+
+<h3>Key Features</h3>
+
+<ul class="feature-list">
+
+<li><span class="feat-dot fd-p">✓</span>Built a complete machine learning pipeline covering preprocessing, feature engineering, model training, evaluation, and prediction generation.</li>
+
+<li><span class="feat-dot fd-p">✓</span>Performed extensive exploratory data analysis with multiple visualizations to uncover customer churn patterns.</li>
+
+<li><span class="feat-dot fd-p">✓</span>Engineered behavioral and financial features including engagement gap, complaint severity, and product usage.</li>
+
+<li><span class="feat-dot fd-p">✓</span>Compared Logistic Regression, Decision Tree, Random Forest, and Hist Gradient Boosting models.</li>
+
+<li><span class="feat-dot fd-p">✓</span>Optimized the model using Recall and F2-score to maximize churn detection and minimize business losses.</li>
+
+</ul>
+
+<div class="info-divider"></div>
+
+<div class="links-row">
+<a class="proj-link link-github" href="https://github.com/Arpita368/Bank-Churn-Prediction" target="_blank">⌥ GitHub</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="wide-gallery" style="margin-top:20px;">
+
+  <!-- Image 1 -->
+  <div class="wide-shot">
+    <img src="screenshots/bank-churn-workflow.jpg"
+         alt="Bank Churn Workflow"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">Bank Churn Workflow</span>
+  </div>
+
+  <!-- Image 2 -->
+  <div class="wide-shot">
+    <img src="screenshots/roc-curve.png"
+         alt="ROC Curve"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">ROC Curve</span>
+  </div>
+
+  <!-- + More -->
+  <div class="more-images" onclick="openBankGalleryPopup()">
+    <span>+3</span>
+  </div>
+
+</div>
+
+<!-- Popup -->
+<div id="bankGalleryPopup" class="gallery-popup">
+
+  <div class="gallery-content">
+
+    <span class="close-popup" onclick="closeBankGalleryPopup()">&times;</span>
+
+    <h3>More Screenshots</h3>
+
+    <div class="popup-gallery">
+
+      <div class="wide-shot">
+        <img src="screenshots/Confusion Matrix.png"
+             alt="Confusion Matrix"
+             onclick="openBankImage(this.src)">
+        <span class="shot-label">Confusion Matrix</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/feature-importance.png"
+             alt="Feature Importance"
+             onclick="openBankImage(this.src)">
+        <span class="shot-label">Feature Importance</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/predictions.png"
+             alt="Churn Prediction"
+             onclick="openBankImage(this.src)">
+        <span class="shot-label">Churn Prediction</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+  <div class="project-sep"></div>
+
+<!-- ══ PROJECT 3: Plant Disease Detection ══ -->
+  <div class="project-block reveal" data-category="ai">
+
+    <div class="project-header">
+      <span class="project-num">02</span>
+      <div class="project-meta">
+        <h2 class="project-title">
+          Plant Disease Detection
+          <span class="project-tag tag-ml">ML</span>
+        </h2>
+        <p class="project-tagline">CNN-based image classification system that identifies plant diseases from leaf photos and provides actionable crop insights.</p>
+      </div>
+    </div>
+
+    <div class="project-body">
+
+      <div class="clay clay-t gallery-card">
+        <img
+    class="gallery-main"
+    id="gallery-pharmacy-main"
+    src="screenshots/EcoCrop AI.png"
+    alt="EcoCrop AI.png"
+    onclick="openLightbox(this.src)">
+
+      </div>
+
+      <div class="clay clay-t info-card">
+        <h3>Tech Stack</h3>
+        <div class="stack-row">
+          <span class="s-pill s-b">Python</span>
+          <span class="s-pill s-p">TensorFlow</span>
+          <span class="s-pill s-t">Keras</span>
+          <span class="s-pill s-t">OpenCV</span>
+          <span class="s-pill s-b">NumPy</span>
+          <span class="s-pill s-g">Matplotlib</span>
+        </div>
+
+        <div class="info-divider"></div>
+        <h3>Key Features</h3>
+        <ul class="feature-list">
+          <li><span class="feat-dot fd-t">✓</span>Convolutional Neural Network trained on labeled plant disease dataset</li>
+          <li><span class="feat-dot fd-p">✓</span>Image preprocessing pipeline with augmentation for improved generalization</li>
+          <li><span class="feat-dot fd-t">✓</span>OpenCV-based real-time image capture and preprocessing workflow</li>
+          <li><span class="feat-dot fd-b">✓</span>Multi-class disease classification with confidence scores</li>
+          <li><span class="feat-dot fd-t">✓</span>Actionable crop recommendations based on detected disease type</li>
+        </ul>
+
+        <div class="info-divider"></div>
+        <div class="links-row">
+          <a class="proj-link link-github" href="https://github.com/Arpita368" target="_blank">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wide-gallery" style="margin-top:20px;">
+
+  <!-- Image 1 -->
+  <div class="wide-shot">
+    <img src="screenshots/EcoCrop AI 2.png"
+         alt="Features"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">EcoCrop AI Features</span>
+  </div>
+
+  <!-- Image 2 -->
+  <div class="wide-shot">
+    <img src="screenshots/Ecocrop-dashboard.png"
+         alt="Ecocrop Dashboard"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">Ecocrop Dashboard</span>
+  </div>
+
+  <!-- + More -->
+  <div class="more-images" onclick="openPlantGalleryPopup()">
+    <span>+3</span>
+  </div>
+
+</div>
+
+<!-- Popup -->
+<div id="plantGalleryPopup" class="gallery-popup">
+
+  <div class="gallery-content">
+
+    <span class="close-popup" onclick="closePlantGalleryPopup()">&times;</span>
+
+    <h3>More Screenshots</h3>
+
+    <div class="popup-gallery">
+
+      <div class="wide-shot">
+        <img src="screenshots/Disease Detection.png"
+             alt="Disease Detection"
+             onclick="openPlantImage(this.src)">
+        <span class="shot-label">Disease Detection</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/Checking crop prices.png"
+             alt="Checking Crop Prices"
+             onclick="openPlantImage(this.src)">
+        <span class="shot-label">Checking Crop Prices</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/Price data.png"
+             alt="Price Data"
+             onclick="openPlantImage(this.src)">
+        <span class="shot-label">Price Data</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+  </div>
+
+  <div class="project-sep"></div>
+
+  <!-- ══ PROJECT 4: Artisan Alley ══ -->
+<div class="project-block reveal" data-category="web">
+
+<div class="project-header">
+
+<span class="project-num">04</span>
+
+<div class="project-meta">
+
+<h2 class="project-title">
+
+Artisan Alley
+
+<span class="project-tag tag-web">Full Stack</span>
+
+</h2>
+
+<p class="project-tagline">
+A full-stack e-commerce marketplace that empowers artisans to showcase and sell handmade products directly to customers through an intuitive online platform.
+</p>
+
+</div>
+
+</div>
+
+<div class="project-body">
+
+<div class="clay clay-t gallery-card">
+<img
+    class="gallery-main"
+    id="gallery-pharmacy-main"
+    src="screenshots/AA-Dashboard.png"
+    alt="Dashboard.png"
+    onclick="openLightbox(this.src)">
+</div>
+
+<div class="clay clay-t info-card">
+
+<h3>Tech Stack</h3>
+
+<div class="stack-row">
+
+<span class="s-pill s-b">Python</span>
+
+<span class="s-pill s-t">Flask</span>
+
+<span class="s-pill s-a">MySQL</span>
+
+<span class="s-pill s-g">HTML5</span>
+
+<span class="s-pill s-g">CSS3</span>
+
+<span class="s-pill s-p">JavaScript</span>
+
+</div>
+
+<div class="info-divider"></div>
+
+<h3>Key Features</h3>
+
+<ul class="feature-list">
+
+<li><span class="feat-dot fd-t">✓</span>Developed a complete marketplace where artisans can register, upload handmade products, and manage customer orders.</li>
+
+<li><span class="feat-dot fd-t">✓</span>Implemented secure authentication with session management and role-based access for buyers and sellers.</li>
+
+<li><span class="feat-dot fd-t">✓</span>Built shopping cart, order management, and product catalog modules with image upload functionality.</li>
+
+<li><span class="feat-dot fd-t">✓</span>Designed the application using the MVC architecture with Flask handling routing, business logic, and database interactions.</li>
+
+<li><span class="feat-dot fd-t">✓</span>Integrated MySQL for efficient management of users, products, shopping carts, and orders.</li>
+
+</ul>
+
+<div class="info-divider"></div>
+
+<div class="links-row">
+
+<a class="proj-link link-github" href="https://github.com/Arpita368/Artisan-Alley" target="_blank">
+⌥ GitHub
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="wide-gallery" style="margin-top:20px;">
+
+  <!-- Image 1 -->
+  <div class="wide-shot">
+    <img src="screenshots/Shop.png"
+         alt="Shop"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">Shop</span>
+  </div>
+
+  <!-- Image 2 -->
+  <div class="wide-shot">
+    <img src="screenshots/Seller Dashboard.png"
+         alt="Seller Dashboard"
+         onclick="openLightbox(this.src)">
+    <span class="shot-label">Seller Dashboard</span>
+  </div>
+
+  <!-- + More -->
+  <div class="more-images" onclick="openArtisanGalleryPopup()">
+    <span>+3</span>
+  </div>
+
+</div>
+
+<!-- Popup -->
+<div id="artisanGalleryPopup" class="gallery-popup">
+
+  <div class="gallery-content">
+
+    <span class="close-popup" onclick="closeArtisanGalleryPopup()">&times;</span>
+
+    <h3>More Screenshots</h3>
+
+    <div class="popup-gallery">
+
+      <div class="wide-shot">
+        <img src="screenshots/Posted Products.png"
+             alt="Posted Products"
+             onclick="openArtisanImage(this.src)">
+        <span class="shot-label">Posted Products</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/Received Orders.png"
+             alt="Received Orders"
+             onclick="openArtisanImage(this.src)">
+        <span class="shot-label">Received Orders</span>
+      </div>
+
+      <div class="wide-shot">
+        <img src="screenshots/Products Bought.png"
+             alt="Products Bought"
+             onclick="openArtisanImage(this.src)">
+        <span class="shot-label">Products Bought</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+</main>
+
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="Screenshot">
+</div>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>← <a href="index.html">Back to portfolio</a> &nbsp;·&nbsp; © 2026 Arpita Sonparote</p>
+</footer>
+
+
+<script>
+  /* ── Scroll reveal ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── Gallery main-image switcher ── */
+  function switchMain(id, src, caption) {
+    const main = document.getElementById('gallery-' + id + '-main');
+    if (main) main.src = src;
+    const cap = document.getElementById('cap-' + id);
+    if (cap) cap.textContent = '▸ ' + caption;
+    document.querySelectorAll('#thumbs-' + id + ' .thumb')
+      .forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  /* ── Lightbox ── */
+  function openLightbox(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  /* ── Filter buttons ── */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-block').forEach(block => {
+        const cat = block.dataset.category;
+        const show = filter === 'all' || cat === filter;
+        block.style.display = show ? '' : 'none';
+      });
+      document.querySelectorAll('.project-sep').forEach(sep => sep.style.display = '');
+    });
+  });
+  function openGalleryPopup() {
+    document.getElementById("galleryPopup").style.display = "block";
+}
+
+function closeGalleryPopup() {
+    document.getElementById("galleryPopup").style.display = "none";
+}
+
+// Close when clicking outside
+window.addEventListener("click", function(e) {
+    const popup = document.getElementById("galleryPopup");
+
+    if (e.target === popup) {
+        popup.style.display = "none";
+    }
+});
+function openImageFromPopup(src) {
+    closeGalleryPopup();   // Close the popup
+    openLightbox(src);     // Open the image
+}
+function openBankGalleryPopup() {
+    document.getElementById("bankGalleryPopup").style.display = "block";
+}
+
+function closeBankGalleryPopup() {
+    document.getElementById("bankGalleryPopup").style.display = "none";
+}
+
+function openBankImage(src) {
+    closeBankGalleryPopup();
+    openLightbox(src);
+}
+
+window.addEventListener("click", function(e) {
+    const popup = document.getElementById("bankGalleryPopup");
+
+    if (e.target === popup) {
+        popup.style.display = "none";
+    }
+});
+
+function openPlantGalleryPopup() {
+    document.getElementById("plantGalleryPopup").style.display = "block";
+}
+
+function closePlantGalleryPopup() {
+    document.getElementById("plantGalleryPopup").style.display = "none";
+}
+
+function openPlantImage(src) {
+    closePlantGalleryPopup();
+    openLightbox(src);
+}
+
+window.addEventListener("click", function(e) {
+    const popup = document.getElementById("plantGalleryPopup");
+
+    if (e.target === popup) {
+        popup.style.display = "none";
+    }
+});
+
+function openArtisanGalleryPopup() {
+    document.getElementById("artisanGalleryPopup").style.display = "block";
+}
+
+function closeArtisanGalleryPopup() {
+    document.getElementById("artisanGalleryPopup").style.display = "none";
+}
+
+function openArtisanImage(src) {
+    closeArtisanGalleryPopup();
+    openLightbox(src);
+}
+
+window.addEventListener("click", function(e) {
+    const popup = document.getElementById("artisanGalleryPopup");
+
+    if (e.target === popup) {
+        popup.style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>
